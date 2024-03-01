@@ -2,4 +2,3 @@
 - DragonFly: CP
 - ScyllaDB: AP
 - ArenadataDB: AP
-- 
