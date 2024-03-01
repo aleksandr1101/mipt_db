@@ -1,1 +1,5 @@
-# mipt_db
+# hw 0
+- DragonFly: CP
+- ScyllaDB: AP
+- ArenadataDB: AP
+- 
