@@ -1,0 +1,64 @@
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'my_database.my_collection',
+    indexFilterSet: false,
+    parsedQuery: { author: { '$regex': 'John' } },
+    queryHash: '2EDFD395',
+    planCacheKey: '2EDFD395',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      stage: 'COLLSCAN',
+      filter: { author: { '$regex': 'John' } },
+      direction: 'forward'
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 437,
+    executionTimeMillis: 11,
+    totalKeysExamined: 0,
+    totalDocsExamined: 20801,
+    executionStages: {
+      stage: 'COLLSCAN',
+      filter: { author: { '$regex': 'John' } },
+      nReturned: 437,
+      executionTimeMillisEstimate: 1,
+      works: 20802,
+      advanced: 437,
+      needTime: 20364,
+      needYield: 0,
+      saveState: 20,
+      restoreState: 20,
+      isEOF: 1,
+      direction: 'forward',
+      docsExamined: 20801
+    }
+  },
+  command: {
+    find: 'my_collection',
+    filter: { author: { '$regex': 'John' } },
+    '$db': 'my_database'
+  },
+  serverInfo: {
+    host: '71f19a8731fd',
+    port: 27017,
+    version: '7.0.8',
+    gitVersion: 'c5d33e55ba38d98e2f48765ec4e55338d67a4a64'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  ok: 1
+}

@@ -1,0 +1,102 @@
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'my_database.my_collection',
+    indexFilterSet: false,
+    parsedQuery: { author: { '$regex': 'John' } },
+    queryHash: '2EDFD395',
+    planCacheKey: 'B25FF36E',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      stage: 'FETCH',
+      inputStage: {
+        stage: 'IXSCAN',
+        filter: { author: { '$regex': 'John' } },
+        keyPattern: { author: 1 },
+        indexName: 'author_1',
+        isMultiKey: false,
+        multiKeyPaths: { author: [] },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: { author: [ '["", {})', '[/John/, /John/]' ] }
+      }
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 437,
+    executionTimeMillis: 10,
+    totalKeysExamined: 18844,
+    totalDocsExamined: 437,
+    executionStages: {
+      stage: 'FETCH',
+      nReturned: 437,
+      executionTimeMillisEstimate: 1,
+      works: 18845,
+      advanced: 437,
+      needTime: 18407,
+      needYield: 0,
+      saveState: 18,
+      restoreState: 18,
+      isEOF: 1,
+      docsExamined: 437,
+      alreadyHasObj: 0,
+      inputStage: {
+        stage: 'IXSCAN',
+        filter: { author: { '$regex': 'John' } },
+        nReturned: 437,
+        executionTimeMillisEstimate: 1,
+        works: 18845,
+        advanced: 437,
+        needTime: 18407,
+        needYield: 0,
+        saveState: 18,
+        restoreState: 18,
+        isEOF: 1,
+        keyPattern: { author: 1 },
+        indexName: 'author_1',
+        isMultiKey: false,
+        multiKeyPaths: { author: [] },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: { author: [ '["", {})', '[/John/, /John/]' ] },
+        keysExamined: 18844,
+        seeks: 1,
+        dupsTested: 0,
+        dupsDropped: 0
+      }
+    }
+  },
+  command: {
+    find: 'my_collection',
+    filter: { author: { '$regex': 'John' } },
+    '$db': 'my_database'
+  },
+  serverInfo: {
+    host: '71f19a8731fd',
+    port: 27017,
+    version: '7.0.8',
+    gitVersion: 'c5d33e55ba38d98e2f48765ec4e55338d67a4a64'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  ok: 1
+}

@@ -1,0 +1,50 @@
+Скачиваем докер: https://docs.docker.com/desktop/wsl/#download
+docker pull mongo
+docker run --name my_mongodb -d -p 27017:27017 mongo
+docker exec -it my_mongodb sh
+добавляем датасет https://www.kaggle.com/c/fake-news/data?select=train.csv через mongoinsert в коллекцию my_collection
+docker exec -it my_mongodb mongosh
+запросы:
+db.my_collection.insertOne({
+    "id": 1234566,
+    "title": "New Title",
+    "author": "New Author",
+    "text": "Lorem ipsum",
+    "label": 0
+})
+db.my_collection.insertMany([
+    {
+        "id": 1234567,
+        "title": "Another Title",
+        "author": "Another Author",
+        "text": "Dolor sit amet",
+        "label": 1
+    },
+    {
+        "id": 1234568,
+        "title": "Yet Another Title",
+        "author": "Yet Another Author",
+        "text": "Consectetur adipiscing elit",
+        "label": 0
+    }
+])
+db.my_collection.updateOne(
+    {"id": 123},
+    {$set: {"label": "positive"}}
+)
+db.my_collection.updateMany(
+    {"author": {$regex: "Smith"}},
+    {$set: {"text": "New text"}}
+)
+db.my_collection.deleteOne({"id": 123})
+db.my_collection.deleteMany({"author": {$regex: "Kate"}})
+db.my_collection.find({"author": {$regex: "John"}})
+Замеряем до создания индекса:
+db.my_collection.find({"author": {$regex: "John"}}).explain("executionStats")
+Результаты замера в файле results1.txt
+Создаем индекс и замеряем заново:
+db.my_collection.createIndex({"author": 1})
+db.my_collection.find({"author": {$regex: "John"}}).explain("executionStats")
+Результаты замера в файле results2.txt
+
+Индекс дали небольшой прирост

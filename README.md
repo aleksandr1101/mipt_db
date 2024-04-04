@@ -1,4 +1,3 @@
-# hw 0
-- DragonFly: CP
-- ScyllaDB: AP
-- ArenadataDB: AP
+# hw 0 done
+# hw 1 done
+...
